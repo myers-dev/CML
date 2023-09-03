@@ -12,7 +12,7 @@ DELAY=120
 START=1
 
 started_nodes = []
-devices = devices_update(devices=devices)
+devices = devices_update()
 
 for device in devices:
     print("Starting ",device["name"])

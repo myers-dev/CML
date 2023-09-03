@@ -3,6 +3,7 @@ devices = [
             "name": "L1",
             "zone": "1",
             "role": "leaf",
+            "asn": "65000",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -16,6 +17,7 @@ devices = [
             "name": "L2",
             "zone": "1",
             "role": "leaf",
+            "asn": "65000",            
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -29,6 +31,7 @@ devices = [
             "name": "L4",
             "zone": "1",
             "role": "leaf",
+            "asn": "65000",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -42,6 +45,7 @@ devices = [
             "name": "S21",
             "zone": "1",
             "role": "spine",
+            "asn": "65000",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -55,6 +59,7 @@ devices = [
             "name": "S22",
             "zone": "1",
             "role": "spine",
+            "asn": "65000",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -68,6 +73,7 @@ devices = [
             "name": "BL31",
             "zone": "1",
             "role": "bl",
+            "asn": "65000",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -81,6 +87,7 @@ devices = [
             "name": "BL32",
             "zone": "1",
             "role": "bl",
+            "asn": "65000",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -133,6 +140,7 @@ devices = [
             "name": "RBL33",
             "zone": "2",
             "role": "bl",
+            "asn": "65002",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -146,6 +154,7 @@ devices = [
             "name": "RBL34",
             "zone": "2",
             "role": "bl",
+            "asn": "65002",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -159,6 +168,7 @@ devices = [
             "name": "RS41",
             "zone": "2",
             "role": "spine",
+            "asn": "65002",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -172,6 +182,7 @@ devices = [
             "name": "RS42",
             "zone": "2",
             "role": "spine",
+            "asn": "65002",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -185,6 +196,7 @@ devices = [
             "name": "RL51",
             "zone": "2",
             "role": "leaf",
+            "asn": "65002",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -198,6 +210,7 @@ devices = [
             "name": "RL52",
             "zone": "2",
             "role": "leaf",
+            "asn": "65002",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -224,6 +237,7 @@ devices = [
             "name": "RBL35",
             "zone": "3",
             "role": "bl",
+            "asn": "65001",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -237,6 +251,7 @@ devices = [
             "name": "RBL36",
             "zone": "3",
             "role": "bl",
+            "asn": "65001",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -250,6 +265,7 @@ devices = [
             "name": "RS43",
             "zone": "3",
             "role": "spine",
+            "asn": "65001",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -263,6 +279,7 @@ devices = [
             "name": "RS44",
             "zone": "3",
             "role": "spine",
+            "asn": "65001",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -276,6 +293,7 @@ devices = [
             "name": "RL53",
             "zone": "3",
             "role": "leaf",
+            "asn": "65001",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -289,6 +307,7 @@ devices = [
             "name": "RL54",
             "zone": "3",
             "role": "leaf",
+            "asn": "65001",
             "definition":
                 {
                     "device_type": "cisco_nxos",
@@ -310,5 +329,32 @@ devices = [
                     "password": "cisco",
                     "session_log": "log/RSRV3.log",
                 },
-        },    
+        },   
+        {
+            "name": "RSRV2",
+            "zone": "3",
+            "role": "ce",
+            "definition":
+                {
+                    "device_type": "cisco_nxos",
+                    "host": "172.16.5.2",
+                    "username": "cisco",
+                    "password": "cisco",
+                    "session_log": "log/RSRV3.log",
+                },
+        }, 
+        {
+            "name": "L3Provider",
+            "zone": "0",
+            "role": "transit",
+            "asn": "65999",
+            "definition":
+                {
+                    "device_type": "cisco_nxos",
+                    "host": "172.16.5.200",
+                    "username": "cisco",
+                    "password": "cisco",
+                    "session_log": "log/L3Provider.log",
+                },
+        },          
     ]

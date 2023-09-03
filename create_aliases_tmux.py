@@ -16,9 +16,8 @@ def create_tmux():
             f.write("tmux new-session -s Lab -d\n")
             count=0
             for device in devices:
-                count+=1
                 f.write("tmux new-window -t Lab:"+str(count)+" -n "+device["name"]+ " 'sshpass -p cisco ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no cisco@"+device["definition"]["host"]+ "'\n")
-
+                count+=1
 
 def main():
     create_aliases()

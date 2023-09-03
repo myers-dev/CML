@@ -9,11 +9,27 @@ import sys
 urllib3.disable_warnings()
 
 def main():
+    # Get the command line arguments
+    args = sys.argv[1:]
+
+    # Check if the user provided any arguments
+    if len(args) == 0:
+        print("Please provide an argument.")
+        sys.exit(1)
+
+    delay = 0
+    commands=[]
+
+    for arg in args:
+        if arg == '-d':
+            delay = 1
+        else:
+            commands.append(arg)
 
     devices=devices_update()
 
     for device in devices:
-        print(device["name"])
+        print(device["name"],device["zone"])
         if not is_alive(LAB,device=device):
             print("Device ",device["name"],"is not alive.")
         else:
@@ -21,9 +37,13 @@ def main():
                 try:
                     with ConnectHandler(**device["definition"]) as net_connect:
                         try: 
-                            output = net_connect.send_command("sh run")
-                            with open("config/" + device["name"] + ".txt", 'w') as f:
-                                f.write(output)
+                            for command in commands:
+                                output = net_connect.send_command(command)
+                                print(command)
+                                print(output)
+                                print("-------------------------")
+                                if delay == 1:
+                                    input()
                         except Exception as e:
                             print(e)
                 except Exception as e:

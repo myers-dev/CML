@@ -1,0 +1,213 @@
+
+!Command: show running-config
+!Running configuration last done at: Tue Aug 22 19:57:24 2023
+!Time: Wed Aug 23 20:38:38 2023
+
+version 10.3(1) Bios:version  
+hostname L3Provider
+vdc L3Provider id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature scp-server
+feature sftp-server
+feature bgp
+
+no password strength-check
+username admin password 5 $5$EPAILK$OG1SIiwyeAnEJanqqGHR2mZAjgrdIPnfHtBBDlvaWd4  role network-admin
+username cisco password 5 $5$LJHKKF$X79ZL6BevBULK3.2qU4pAIsfTdbM5gqotRhowzNbFR3  role network-admin
+username cisco passphrase  lifetime 99999 warntime 14 gracetime 3
+ip domain-lookup
+copp profile strict
+snmp-server user admin network-admin auth md5 32182C7E9B8DCA19FA49C307A0A264258FA4 priv aes-128 01732E69C682971DDD0AAC42F7AE6A3293BA localizedV2key
+snmp-server user cisco network-admin auth md5 1768735FB6A6C3668162C905A1B36E7FD2D6 priv aes-128 531568363727779562C05F996964A3E94435 localizedV2key
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+
+interface Ethernet1/1
+  no switchport
+  ip address 192.168.0.1/30
+  no shutdown
+
+interface Ethernet1/2
+  no switchport
+  ip address 192.168.1.1/30
+  no shutdown
+
+interface Ethernet1/3
+  no switchport
+  ip address 192.168.2.1/30
+  no shutdown
+
+interface Ethernet1/4
+  no switchport
+  ip address 192.168.3.1/30
+  no shutdown
+
+interface Ethernet1/5
+  no switchport
+  ip address 192.168.4.1/30
+  no shutdown
+
+interface Ethernet1/6
+  no switchport
+  ip address 192.168.5.1/30
+  no shutdown
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  vrf member management
+  ip address 172.16.5.200/16
+icam monitor scale
+
+cli alias name wr copy run start
+line console
+line vty
+boot nxos bootflash:/nxos64-cs.10.3.1.F.bin 
+router bgp 65999
+  neighbor 192.168.0.2
+    remote-as 65000
+    address-family ipv4 unicast
+  neighbor 192.168.1.2
+    remote-as 65002
+    address-family ipv4 unicast
+  neighbor 192.168.2.2
+    remote-as 65002
+    address-family ipv4 unicast
+  neighbor 192.168.3.2
+    remote-as 65000
+    address-family ipv4 unicast
+  neighbor 192.168.4.2
+    remote-as 65003
+    address-family ipv4 unicast
+  neighbor 192.168.5.2
+    remote-as 65003
+    address-family ipv4 unicast
+
+
+

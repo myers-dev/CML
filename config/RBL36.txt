@@ -1,0 +1,225 @@
+
+!Command: show running-config
+!Running configuration last done at: Tue Aug 22 20:02:41 2023
+!Time: Wed Aug 23 20:41:10 2023
+
+version 10.3(1) Bios:version  
+hostname RBL36
+vdc RBL36 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+nv overlay evpn
+feature ospf
+feature bgp
+feature vn-segment-vlan-based
+feature nv overlay
+evpn multisite border-gateway 2
+
+no password strength-check
+username admin password 5 $5$KLCEAJ$VlA/QLDzY23cfexFvHb93QossovtDLQqqAN.jSV8ElA  role network-admin
+username cisco password 5 $5$NAADLI$kDsgwLENtbNw76sIPuu/8173u8BkO0IVUa2H3wvR/XA  role network-admin
+username cisco passphrase  lifetime 99999 warntime 14 gracetime 3
+ip domain-lookup
+copp profile strict
+snmp-server user admin network-admin auth md5 366A52C6909C18A7C9B2E4C1CFD7A0C8C7FF priv aes-128 482A00D6F2B64187E1D8D188D2878F8E83D2 localizedV2key
+snmp-server user cisco network-admin auth md5 040B5AD588B37AF6CEF6A9DCCA93AEE6FDE7 priv aes-128 531441913766CB015871210C4D576B045749 localizedV2key
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1
+
+vrf context management
+
+interface Ethernet1/1
+  no switchport
+  ip address 192.168.5.2/30
+  no shutdown
+  evpn multisite dci-tracking
+
+interface Ethernet1/2
+
+interface Ethernet1/3
+
+interface Ethernet1/4
+
+interface Ethernet1/5
+  no switchport
+  mtu 9216
+  medium p2p
+  ip unnumbered loopback0
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/6
+  no switchport
+  mtu 9216
+  medium p2p
+  ip unnumbered loopback0
+  ip router ospf 1 area 0.0.0.0
+  no shutdown
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface Ethernet1/10
+
+interface Ethernet1/11
+
+interface Ethernet1/12
+
+interface Ethernet1/13
+
+interface Ethernet1/14
+
+interface Ethernet1/15
+
+interface Ethernet1/16
+
+interface Ethernet1/17
+
+interface Ethernet1/18
+
+interface Ethernet1/19
+
+interface Ethernet1/20
+
+interface Ethernet1/21
+
+interface Ethernet1/22
+
+interface Ethernet1/23
+
+interface Ethernet1/24
+
+interface Ethernet1/25
+
+interface Ethernet1/26
+
+interface Ethernet1/27
+
+interface Ethernet1/28
+
+interface Ethernet1/29
+
+interface Ethernet1/30
+
+interface Ethernet1/31
+
+interface Ethernet1/32
+
+interface Ethernet1/33
+
+interface Ethernet1/34
+
+interface Ethernet1/35
+
+interface Ethernet1/36
+
+interface Ethernet1/37
+
+interface Ethernet1/38
+
+interface Ethernet1/39
+
+interface Ethernet1/40
+
+interface Ethernet1/41
+
+interface Ethernet1/42
+
+interface Ethernet1/43
+
+interface Ethernet1/44
+
+interface Ethernet1/45
+
+interface Ethernet1/46
+
+interface Ethernet1/47
+
+interface Ethernet1/48
+
+interface Ethernet1/49
+
+interface Ethernet1/50
+
+interface Ethernet1/51
+
+interface Ethernet1/52
+
+interface Ethernet1/53
+
+interface Ethernet1/54
+
+interface Ethernet1/55
+
+interface Ethernet1/56
+
+interface Ethernet1/57
+
+interface Ethernet1/58
+
+interface Ethernet1/59
+
+interface Ethernet1/60
+
+interface Ethernet1/61
+
+interface Ethernet1/62
+
+interface Ethernet1/63
+
+interface Ethernet1/64
+
+interface mgmt0
+  vrf member management
+  ip address 172.16.3.36/16
+
+interface loopback0
+  ip address 11.0.2.36/32
+  ip router ospf 1 area 0.0.0.0
+
+interface loopback1
+  ip address 12.0.2.36/32
+  ip router ospf 1 area 0.0.0.0
+icam monitor scale
+
+cli alias name wr copy run start
+line console
+  exec-timeout 0
+line vty
+  exec-timeout 0
+boot nxos bootflash:/nxos64-cs.10.3.1.F.bin 
+router ospf 1
+router bgp 65003
+  address-family ipv4 unicast
+    network 11.0.2.36/32
+    network 12.0.2.36/32
+  address-family l2vpn evpn
+    maximum-paths ibgp 16
+  template peer iBGP-EVPN
+    remote-as 65003
+    update-source loopback0
+    address-family l2vpn evpn
+      send-community extended
+  neighbor 11.0.2.43
+    inherit peer iBGP-EVPN
+  neighbor 11.0.2.44
+    inherit peer iBGP-EVPN
+  neighbor 192.168.5.1
+    remote-as 65999
+    address-family ipv4 unicast
+
+no logging console
+
+

@@ -31,13 +31,14 @@ def main():
     commands = ["sh ver"]
 
     nodes = labnodes(LAB,JWT)
+    devices = devices_update()
 
     for device in devices:
         if not is_alive(LAB,device=device):
             print("Device ",device["name"],"is not alive.")
             if action != 3:
                 state(device["id"], action, LAB, JWT)
-                print("Device ",device["name"],"is not alive. Action",)
+                print("Device ",device["name"],"is not alive. Action",action,"taken")
 
         else:
             print("Device ",device["name"],"is alive. No action taken")
